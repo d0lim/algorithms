@@ -3,14 +3,10 @@ package datastructure
 import "errors"
 
 type stackLinkedList struct {
-	Current *node
+	Current *Node
 	Length  int
 }
 
-type node struct {
-	Item interface{}
-	Next *node
-}
 
 // NewStackLinkedList returns stack made with linked list.
 func NewStackLinkedList() Stack {
@@ -18,7 +14,7 @@ func NewStackLinkedList() Stack {
 }
 
 func (s *stackLinkedList) Push(obj interface{}) {
-	newNode := &node{}
+	newNode := &Node{}
 	newNode.Item = obj
 	newNode.Next = s.Current
 	s.Current = newNode
@@ -26,13 +22,13 @@ func (s *stackLinkedList) Push(obj interface{}) {
 }
 
 func (s *stackLinkedList) Pop() (interface{}, error) {
-	if !s.IsEmpty() {
-		item := s.Current.Item
-		s.Current = s.Current.Next
-		s.Length--
-		return item, nil
+	if s.IsEmpty() {
+		return nil, errors.New("stack linkedlist pop: stack is empty")
 	}
-	return nil, errors.New("stack linkedlist pop: stack is empty")
+	item := s.Current.Item
+	s.Current = s.Current.Next
+	s.Length--
+	return item, nil
 }
 
 func (s *stackLinkedList) IsEmpty() bool {

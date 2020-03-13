@@ -31,13 +31,13 @@ func (s *stackArray) Push(item interface{}) {
 }
 
 func (s *stackArray) Pop() (interface{}, error) {
-	if !s.IsEmpty() {
-		item := s.Items[s.Index - 1]
-		s.Index--
-		s.Resize()
-		return item, nil
+	if s.IsEmpty() {
+		return nil, errors.New("stack array pop: stack is empty")
 	}
-	return nil, errors.New("stack array pop: stack is empty")
+	item := s.Items[s.Index - 1]
+	s.Index--
+	s.Resize()
+	return item, nil
 }
 
 func (s *stackArray) IsEmpty() bool {
