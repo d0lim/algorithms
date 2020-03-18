@@ -3,10 +3,9 @@ package datastructure
 import "errors"
 
 type stackLinkedList struct {
-	Current *Node
+	Current *LinkedListNode
 	Length  int
 }
-
 
 // NewStackLinkedList returns stack made with linked list.
 func NewStackLinkedList() Stack {
@@ -14,7 +13,7 @@ func NewStackLinkedList() Stack {
 }
 
 func (s *stackLinkedList) Push(obj interface{}) {
-	newNode := &Node{}
+	newNode := &LinkedListNode{}
 	newNode.Item = obj
 	newNode.Next = s.Current
 	s.Current = newNode

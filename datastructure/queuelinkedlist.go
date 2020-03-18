@@ -3,8 +3,8 @@ package datastructure
 import "errors"
 
 type queueLinkedList struct {
-	Head *Node
-	Tail *Node
+	Head   *LinkedListNode
+	Tail   *LinkedListNode
 	Length int
 }
 
@@ -15,7 +15,7 @@ func NewQueueLinkedList() Queue {
 
 func (q *queueLinkedList) Enqueue(value interface{}) {
 	oldTail := q.Tail
-	q.Tail = &Node{}
+	q.Tail = &LinkedListNode{}
 	q.Tail.Item = value
 
 	if q.IsEmpty() {
@@ -38,7 +38,6 @@ func (q *queueLinkedList) Dequeue() (interface{}, error) {
 	}
 	return item, nil
 }
-
 
 func (q *queueLinkedList) IsEmpty() bool {
 	return q.Size() == 0
