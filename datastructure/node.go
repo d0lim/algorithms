@@ -6,8 +6,11 @@ type LinkedListNode struct {
 	Next *LinkedListNode
 }
 
+type level int
+
 // TreeNode is a struct for tree data structure.
 type TreeNode struct {
 	Item     interface{}
-	Children []TreeNode
+	Level    level
+	Children []*TreeNode
 }
